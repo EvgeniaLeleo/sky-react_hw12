@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -6,23 +7,21 @@ import Button from './Button';
 
 const StyledConsole = styled.textarea`
   font-size: inherit;
-  color: green;
+  color: ${(props) => props.color};
 
   width: 100%;
-  height: 70vh;
+  min-height: 70vh;
 
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   border: none;
   :focus {
     outline: none;
   }
 
   resize: none;
-
-  autofocus: true;
 `;
 
-const Console = (color, ...props) => {
+const Console = ({ color }) => {
   const [lines, setLines] = useState(['C/users/SKYPRO_REACT>']);
   const [status, setStatus] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -53,12 +52,14 @@ const Console = (color, ...props) => {
 
   return (
     <>
-      <Button onClick={onClick} active={status} />
-      {lines.map((line) => (
-        <Line>{line}</Line>
+      <Button onClick={onClick} active={status} color={color} />
+      {lines.map((line, index) => (
+        <Line key={index} color={color}>
+          {line}
+        </Line>
       ))}
       <StyledConsole
-        {...props}
+        autoFocus
         color={color}
         onKeyPress={onKeyPress}
         onChange={onChange}

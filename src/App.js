@@ -2,11 +2,13 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import Console from './components/Console';
 import Title from './components/Title';
+import currentThemeColor from './theme';
 
 const GlobalStyles = createGlobalStyle`
   body {
     font-family: consolas;
     font-size: 16px;
+    color: ${currentThemeColor};
 
     box-sizing: border-box;
     margin:0;
@@ -26,8 +28,8 @@ const App = () => (
   <>
     <GlobalStyles />
     <AppWrapper>
-      <Title>Console CMD. SKYPRO_REACT</Title>
-      <Console />
+      <Title color={currentThemeColor}>Console CMD. SKYPRO_REACT</Title>
+      <Console color={currentThemeColor} />
     </AppWrapper>
   </>
 );

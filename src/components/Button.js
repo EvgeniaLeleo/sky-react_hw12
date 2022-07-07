@@ -6,7 +6,7 @@ const ButtonStyles = styled.button`
 
   font-family: monospace;
   font-size: 18px;
-  color: green;
+  color: ${(props) => props.color};
   text-decoration: none;
   opacity: ${(props) => (props.$active ? '100%' : '50%')};
 
@@ -15,15 +15,15 @@ const ButtonStyles = styled.button`
 
   background-color: transparent;
 
-  border: 2px solid green;
+  border: 2px solid ${(props) => props.color};
   border-radius: 3px;
 
   cursor: ${(props) => (props.$active ? 'pointer' : 'default')};
   transition: all 0.3s;
 
   :hover {
-    color: ${(props) => (props.$active ? 'tomato' : 'green')};
-    border: 2px solid ${(props) => (props.$active ? 'tomato' : 'green')};
+    color: ${(props) => (props.$active ? 'tomato' : props.color)};
+    border: 2px solid ${(props) => (props.$active ? 'tomato' : props.color)};
   }
 
   :active {
@@ -31,9 +31,9 @@ const ButtonStyles = styled.button`
   }
 `;
 
-const Button = ({ active = false, onClick }) => (
+const Button = ({ active = false, onClick, color }) => (
   <div>
-    <ButtonStyles $active={active} onClick={onClick}>
+    <ButtonStyles $active={active} onClick={onClick} color={color}>
       Reset
     </ButtonStyles>
   </div>
