@@ -1,5 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 import styled from 'styled-components';
 import Line from './Line';
@@ -9,8 +8,10 @@ const StyledConsole = styled.textarea`
   font-size: inherit;
   color: ${(props) => props.color};
 
+  padding: 0 3px;
+
   width: 100%;
-  min-height: 70vh;
+  min-height: 100%;
 
   background: transparent;
   border: none;
@@ -23,7 +24,7 @@ const StyledConsole = styled.textarea`
 
 const Console = ({ color }) => {
   const [lines, setLines] = useState(['C/users/SKYPRO_REACT>']);
-  const [status, setStatus] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
   const onKeyPress = (e) => {
@@ -35,36 +36,41 @@ const Console = ({ color }) => {
   const onClick = () => {
     setLines(['C/users/SKYPRO_REACT>']);
     setInputValue('');
-    setStatus(false);
+    setIsActive(false);
   };
 
   const onChange = (e) => {
-    setInputValue(e.target.value);
-    setStatus(true);
-  };
+    if (e.target.value === '') {
+      setIsActive(false);
+    } else setIsActive(true);
 
-  // const ConsoleWrapper = styled.div`
-  //   display: flex;
-  //   flex-direction: column;
-  //   gap: 10px;
-  //   align-items: flex-start;
-  // `;
+    setInputValue(e.target.value);
+  };
 
   return (
     <>
-      <Button onClick={onClick} active={status} color={color} />
-      {lines.map((line, index) => (
-        <Line key={index} color={color}>
-          {line}
-        </Line>
-      ))}
-      <StyledConsole
-        autoFocus
-        color={color}
-        onKeyPress={onKeyPress}
-        onChange={onChange}
-        value={inputValue}
-      />
+      <Button onClick={onClick} active={isActive} color={color} />
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'auto 1fr',
+        }}
+      >
+        <div>
+          {lines.map((line, index) => (
+            <Line key={index} color={color}>
+              {line}
+            </Line>
+          ))}
+        </div>
+        <StyledConsole
+          autoFocus
+          color={color}
+          onKeyPress={onKeyPress}
+          onChange={onChange}
+          value={inputValue}
+        />
+      </div>
     </>
   );
 };

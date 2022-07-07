@@ -6,6 +6,6 @@ const baseTheme = {
   },
 };
 
-const currentThemeColor = baseTheme.colors.blue;
+const currentThemeColor = baseTheme.colors.green;
 
 export default currentThemeColor;
