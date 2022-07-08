@@ -1,26 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { useState } from 'react';
-import styled from 'styled-components';
-import Line from './Line';
-import Button from './Button';
-
-const StyledConsole = styled.textarea`
-  font-size: inherit;
-  color: ${(props) => props.color};
-
-  padding: 0 3px;
-
-  width: 100%;
-  min-height: 100%;
-
-  background: transparent;
-  border: none;
-  :focus {
-    outline: none;
-  }
-
-  resize: none;
-`;
+import Button from '../Button/Button';
+import { StyledConsole, Line } from './styles';
 
 const Console = ({ color }) => {
   const [lines, setLines] = useState(['C/users/SKYPRO_REACT>']);

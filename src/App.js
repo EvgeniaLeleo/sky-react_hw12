@@ -1,10 +1,9 @@
-import styled, { createGlobalStyle } from 'styled-components';
-
-import Console from './components/Console';
-import Title from './components/Title';
+import { createGlobalStyle } from 'styled-components';
+import Console from './components/Console/Console';
 import currentThemeColor from './theme';
+import { AppWrapper, Title } from './styles';
 
-const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   body {
     font-family: consolas;
     font-size: 16px;
@@ -14,15 +13,6 @@ const GlobalStyles = createGlobalStyle`
     margin:0;
     padding:0;
   }`;
-
-const AppWrapper = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  padding: 2rem;
-  box-sizing: border-box;
-
-  background: black;
-`;
 
 const App = () => (
   <>

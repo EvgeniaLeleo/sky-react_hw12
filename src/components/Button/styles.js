@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonStyles = styled.button`
+export const ButtonStyles = styled.button`
   display: inline-block;
   display: block;
 
@@ -31,12 +31,4 @@ const ButtonStyles = styled.button`
   }
 `;
 
-const Button = ({ active = false, onClick, color }) => (
-  <div>
-    <ButtonStyles $active={active} onClick={onClick} color={color}>
-      Reset
-    </ButtonStyles>
-  </div>
-);
-
-export default Button;
+export default ButtonStyles;
